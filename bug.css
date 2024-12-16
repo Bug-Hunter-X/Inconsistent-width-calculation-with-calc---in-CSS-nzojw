@@ -1,0 +1,9 @@
+The following CSS rule has an unexpected behavior in some browsers:
+
+```css
+div {
+  width: calc(50% - 10px);
+}
+```
+
+This might result in the div's width being calculated incorrectly, particularly when the parent container's width is not explicitly defined or is smaller than expected. The issue stems from the `calc()` function's interaction with the percentage unit and how browsers handle rounding or floating-point arithmetic.
