@@ -1,0 +1,47 @@
+Several approaches can improve the consistency of width calculations using `calc()`:
+
+1. **Avoid `calc()` if possible:** If the desired width can be expressed without `calc()`, that's often the simplest and most reliable solution.  For instance, if you can determine a fixed pixel width that works across browsers, prefer that.
+
+2. **Explicitly set parent width:**  Ensure that the parent container's width is explicitly defined (using pixels, percentages, or other units) to reduce ambiguity in the `calc()` function's computation.
+
+3. **Use a more flexible approach:** Consider using Flexbox or Grid layout, which provide robust and predictable mechanisms for distributing space among child elements, minimizing reliance on potentially problematic `calc()` calculations.
+
+4. **Rounding:** You could use `round()` function to round the result of `calc()` to the nearest integer:
+
+```css
+div {
+  width: round(calc(50% - 10px));
+}
+```
+
+However, this isn't always a perfect solution and can also cause unexpected behaviour depending on the browsers implementation.
+
+**Example (bug.css):**
+
+```css
+div {
+  width: calc(50% - 10px);
+  background-color: lightblue;
+}
+```
+
+**Example (bugSolution.css):**
+
+```css
+/* Solution using a fixed width (if possible): */
+div {
+  width: 230px;
+  background-color: lightgreen;
+}
+
+/* Solution using flexbox for more predictable layout: */
+.container {
+  display: flex;
+}
+
+.container > div {
+  flex: 1;
+  margin-right: 10px;
+  background-color: lightcoral;
+}
+```
